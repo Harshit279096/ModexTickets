@@ -15,21 +15,6 @@ services:
       - key: PORT
         value: 10000
 
-  # Frontend (Static Site)
-  - type: static
-    name: modex-frontend
-    env: static
-    root: frontend
-    plan: free
-    buildCommand: npm install && npm run build
-    publish: dist
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: modex-backend
-          envVarKey: RENDER_EXTERNAL_URL
-
 databases:
   - name: modex-db
     plan: free
