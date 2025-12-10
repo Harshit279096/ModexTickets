@@ -24,7 +24,7 @@ interface DataContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api`;
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<{ id: string; name: string; role: 'admin' | 'user' } | null>(null);
