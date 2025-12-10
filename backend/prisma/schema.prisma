@@ -1,0 +1,39 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Show {
+  id         Int      @id @default(autoincrement())
+  name       String
+  startTime  DateTime
+  totalSeats Int
+  price      Float    @default(0)
+  seats      Seat[]
+}
+
+model Seat {
+  id        Int      @id @default(autoincrement())
+  row       String
+  number    Int
+  status    String   @default("AVAILABLE") // AVAILABLE, LOCKED, BOOKED
+  showId    Int
+  show      Show     @relation(fields: [showId], references: [id])
+  bookingId Int?
+  booking   Booking? @relation(fields: [bookingId], references: [id])
+  version   Int      @default(0)
+
+  @@unique([showId, row, number])
+}
+
+model Booking {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  status    String   // PENDING, CONFIRMED, FAILED
+  seats     Seat[]
+  createdAt DateTime @default(now())
+}
