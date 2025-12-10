@@ -64,17 +64,28 @@ A premium, high-concurrency ticket booking platform built with Node.js, Express,
 - `POST /api/bookings`: Book seats.
   - Body: `{ userId, showId, seatIds: [] }`
 
-## Deployment Guide
+## 🚀 Deployment Guide (Render)
 
-### Backend (Render/Railway)
-1. Push code to GitHub.
-2. Create web service on Render.
-3. Set build command: `npm install && npx prisma generate && npx tsc`.
-4. Set start command: `node dist/server.js`.
-5. Set env variables (`DATABASE_URL`).
+This project is configured for **1-Click Deployment** on Render.
 
-### Frontend (Vercel)
-1. Push to GitHub.
-2. Import project in Vercel.
-3. Set preset to Vite.
-4. Deploy.
+### Phase 1: Backend & Database
+1.  Log in to [Render Dashboard](https://dashboard.render.com).
+2.  Click **New +** -> **Blueprint**.
+3.  Connect your GitHub repository.
+4.  Render will auto-detect `render.yaml`. Click **Apply**.
+5.  Wait for deployment to finish.
+6.  **Copy the Backend Service URL** (e.g., `https://modex-backend-xyz.onrender.com`).
+
+### Phase 2: Frontend
+1.  On Render, click **New +** -> **Static Site**.
+2.  Connect the same repository.
+3.  **Settings**:
+    *   **Root Directory**: `frontend`
+    *   **Build Command**: `npm install && npm run build`
+    *   **Publish Directory**: `dist`
+4.  **Environment Variables**:
+    *   Key: `VITE_API_URL`
+    *   Value: `YOUR_BACKEND_URL` (from Phase 1).
+5.  Click **Create Static Site**.
+
+Your full-stack app is now live!
