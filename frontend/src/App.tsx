@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import Home from './pages/Home';
