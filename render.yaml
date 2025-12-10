@@ -3,7 +3,7 @@ services:
   - type: web
     name: modex-backend
     env: node
-    root: backend
+    rootDir: backend
     plan: free
     buildCommand: npm install && npx prisma generate && npx tsc
     startCommand: node dist/server.js
