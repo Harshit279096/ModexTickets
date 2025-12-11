@@ -25,9 +25,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 // Automatically switch API based on where the app is running
-const API_URL = window.location.hostname === 'localhost'
-    ? 'http://localhost:3000/api'
-    : 'https://modex-backend.onrender.com/api';
+// Hardcoding Production URL for Reliability
+const API_URL = 'https://modex-backend.onrender.com/api';
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<{ id: string; name: string; role: 'admin' | 'user' } | null>(null);
