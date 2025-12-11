@@ -24,7 +24,10 @@ interface DataContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
-const API_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api`;
+// Automatically switch API based on where the app is running
+const API_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:3000/api'
+    : 'https://modex-backend.onrender.com/api';
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<{ id: string; name: string; role: 'admin' | 'user' } | null>(null);
